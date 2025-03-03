@@ -22,7 +22,7 @@ $stmt->execute([$courier_id, $region_id, $departure_date]);
 $active_trips_count = $stmt->fetchColumn();
 
 if ($active_trips_count > 0) {
-    die("Ошибка: Курьер уже находится в поездке в этот регион.");
+    die("Курьер уже находится в поездке в этот регион.");
 }
 
 $stmt = $pdo->prepare("SELECT travel_days FROM Regions WHERE ID = ?");
