@@ -10,6 +10,10 @@ $courier_id = $_POST['courier_id'];
 $region_id = $_POST['region_id'];
 $departure_date = $_POST['departure_date'];
 
+if(empty($departure_date)){
+    die("Введите дату отправления.");
+}
+
 $stmt = $pdo->prepare("
     SELECT COUNT(*) 
     FROM Trips 
