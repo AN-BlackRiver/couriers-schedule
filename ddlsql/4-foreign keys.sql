@@ -1,2 +1,0 @@
-ALTER TABLE public.trips ADD CONSTRAINT trips_courier_id_fkey FOREIGN KEY (courier_id) REFERENCES public.couriers(id);
-ALTER TABLE public.trips ADD CONSTRAINT trips_region_id_fkey FOREIGN KEY (region_id) REFERENCES public.regions(id);
