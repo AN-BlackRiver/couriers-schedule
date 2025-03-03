@@ -14,20 +14,21 @@ $stmt = $pdo->prepare("
     SELECT COUNT(*) 
     FROM Trips 
     WHERE courier_id = ? 
-      AND region_id = ? 
       AND arrival_date >= ?
 ");
-$stmt->execute([$courier_id, $region_id, $departure_date]);
+if(!$stmt->execute([$courier_id, $departure_date])){
+    die("Ошибка при проверке активных поездок.");
+};
 
-$active_trips_count = $stmt->fetchColumn();
+$trips_count = $stmt->fetchColumn();
 
-if ($active_trips_count > 0) {
-    die("Курьер уже находится в поездке в этот регион.");
+if ($trips_count > 0) {
+    die("У курьера уже есть поездка на указанную дату.");
 }
 
 $stmt = $pdo->prepare("SELECT travel_days FROM Regions WHERE ID = ?");
 $stmt->execute([$region_id]);
-   
+
 $travel_time = $stmt->fetchColumn();
 
 $arrival_date = date('Y-m-d', strtotime($departure_date . " + $travel_time days"));
