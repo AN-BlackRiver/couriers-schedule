@@ -1,4 +1,4 @@
-CREATE TABLE public.travel (
+CREATE TABLE public.trips (
     ID SERIAL PRIMARY KEY,
     courier_id INT REFERENCES Couriers(Id),
     region_id INT REFERENCES Regions(ID),
